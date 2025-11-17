@@ -2,7 +2,8 @@ rootProject.name = "msa-architecture-skeleton"
 
 
 val infraModules : Array<String> = arrayOf(
-    "discovery-service"
+    "discovery-service",
+    "config-service"
 )
 
 

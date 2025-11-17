@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring
+    username: spring
+    password: spring123!@
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true # 쿼리 보기
+    properties:
+      hibernate:
+        format_sql: true # 한줄로 나오는 디버그 쿼리문을 포맷팅해줌
+        highlight_sql: true # SQL 콘솔 색 부여
+        use_sql_comments: false # /* */ 주석 추가
+        default_batch_fetch_size: 100 # jpa에서 복잡한 쿼리를 사용할때 한번에 벌크로 셀렉트

@@ -10,6 +10,7 @@ plugins {
 group = "dev.architecture"
 version = "0.0.1-SNAPSHOT"
 description = "msa-architecture-skeleton"
+val springCloudVersion = "2025.0.0"
 
 java {
     toolchain {
@@ -17,28 +18,47 @@ java {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    testImplementation("org.springframework.security:spring-security-test")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
-
-kotlin {
-    compilerOptions {
-        freeCompilerArgs.addAll("-Xjsr305=strict")
-        jvmTarget.set(JvmTarget.JVM_24)
-
+allprojects {
+    repositories {
+        mavenCentral()
     }
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+
+subprojects {
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.jetbrains.kotlin.plugin.spring")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
+
+    dependencies {
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+        developmentOnly("org.springframework.boot:spring-boot-devtools")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+        testImplementation("org.springframework.security:spring-security-test")
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    }
+
+    kotlin {
+        compilerOptions {
+            freeCompilerArgs.addAll("-Xjsr305=strict")
+            jvmTarget.set(JvmTarget.JVM_24)
+
+        }
+    }
+
+    // 핵심: Spring Cloud BOM(Bill of Materials) 가져오기
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
+        }
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
 }
+
+
+

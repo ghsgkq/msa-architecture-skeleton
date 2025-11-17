@@ -1,0 +1,13 @@
+package dev.architecture.msaarchitectureskeleton
+
+import org.junit.jupiter.api.Test
+import org.springframework.boot.test.context.SpringBootTest
+
+@SpringBootTest
+class MsaArchitectureSkeletonApplicationTests {
+
+    @Test
+    fun contextLoads() {
+    }
+
+}

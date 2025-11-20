@@ -1,0 +1,31 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: local
+  application:
+    name: gateway-service
+  cloud:
+    config:
+      name: r2dbc,discovery,secret,docs
+  config:
+    import:
+      - configserver:${CONFIG_URL:http://172.30.1.114:9999}
+
+logging:
+  level:
+    '[org.hibernate.orm.jdbc.bind]': trace
+    '[com.linecorp.kotlinjdsl]': debug
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+logging:
+  level:
+    '[org.hibernate.orm.jdbc.bind]': trace
+    '[com.linecorp.kotlinjdsl]': debug
+    '[com.netflix.discovery]': warn
+    '[com.netflix.eureka]': warn

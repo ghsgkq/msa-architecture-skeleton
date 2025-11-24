@@ -7,7 +7,14 @@ val infraModules : Array<String> = arrayOf(
     "gateway-service"
 )
 
+val serviceModules : Array<String> = arrayOf(
+    "core-service:api",
+    "core-service:domain",
+    "core-service:storage"
+)
+
 
 include(
-    *infraModules
+    *infraModules,
+    *serviceModules
 )

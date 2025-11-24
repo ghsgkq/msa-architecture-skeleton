@@ -24,6 +24,8 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.projectreactor:reactor-test")
 
+    implementation("io.jsonwebtoken:jjwt:0.13.0")
+
 
 }
 

@@ -1,0 +1,17 @@
+server:
+  port: 0
+spring:
+  profiles:
+    active: dev,migrate
+  application:
+    name: core-service
+  config:
+    import:
+      - configserver:${CONFIG_URL:http://localhost:8888}
+  cloud:
+    config:
+      name: database,discovery
+logging:
+  level:
+    '[org.hibernate.orm.jdbc.bind]': trace
+    '[com.linecorp.kotlinjdsl]': debug

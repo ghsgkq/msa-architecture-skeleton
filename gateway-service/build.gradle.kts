@@ -5,7 +5,7 @@ description = "msa-architecture-skeleton"
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:2.2.21")
-    implementation("org.springframework.cloud:spring-cloud-starter-gateway")
+    implementation("org.springframework.cloud:spring-cloud-starter-gateway-server-webflux")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")

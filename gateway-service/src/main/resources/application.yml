@@ -7,10 +7,10 @@ spring:
     name: gateway-service
   cloud:
     config:
-      name: discovery
+      name: discovery,secret,r2dbc
   config:
     import:
-      - configserver:${CONFIG_URL:http://172.30.1.114:9999}
+      - configserver:${CONFIG_URL:http://localhost:8888}
 
 logging:
   level:

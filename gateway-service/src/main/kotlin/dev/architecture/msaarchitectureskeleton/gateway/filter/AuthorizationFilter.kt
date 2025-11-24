@@ -1,6 +1,9 @@
 package dev.architecture.msaarchitectureskeleton.gateway.filter
 
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.security.Keys
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory
 import org.springframework.http.HttpHeaders
@@ -8,9 +11,12 @@ import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Mono
+import java.nio.charset.StandardCharsets
 
 @Component
-class AuthorizationFilter : AbstractGatewayFilterFactory<AuthorizationFilter.Config>(Config::class.java) {
+class AuthorizationFilter(
+    @Value("\${jwt.secret}") private val secretKey: String
+) : AbstractGatewayFilterFactory<AuthorizationFilter.Config>(Config::class.java) {
 
     private val log = LoggerFactory.getLogger(javaClass)
 
@@ -29,11 +35,32 @@ class AuthorizationFilter : AbstractGatewayFilterFactory<AuthorizationFilter.Con
             }
 
             val token = authorizationHeader.substring(7)
-            log.info("token: {}", token) // Just logging the token for now
 
-            // TODO: 토큰 유효성 검사 로직 추가 (e.g., an authentication service)
+            val userId = getUserId(token)
+            if (userId == null) {
+                return@GatewayFilter onError(exchange, "JWT token is not valid", HttpStatus.UNAUTHORIZED)
+            }
 
-            chain.filter(exchange)
+            val newRequest = exchange.request.mutate()
+                .header("X-USER-ID", userId)
+                .build()
+
+            chain.filter(exchange.mutate().request(newRequest).build())
+        }
+    }
+
+    private fun getUserId(token: String): String? {
+        return try {
+            val key = Keys.hmacShaKeyFor(secretKey.toByteArray(StandardCharsets.UTF_8))
+            val claims = Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .payload
+            claims.subject
+        } catch (e: Exception) {
+            log.error("JWT token validation error: {}", e.message)
+            null
         }
     }
 

@@ -10,7 +10,8 @@ val infraModules : Array<String> = arrayOf(
 val serviceModules : Array<String> = arrayOf(
     "core-service:api",
     "core-service:domain",
-    "core-service:storage"
+    "core-service:storage",
+    "core-service:common"
 )
 
 

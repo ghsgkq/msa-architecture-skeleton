@@ -1,0 +1,5 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:7432/my-test
+    username: skeleton
+    password: msa123!@

@@ -1,4 +1,4 @@
-package dev.architecture.msaarchitectureskeleton.entity.base
+package dev.architecture.msaarchitectureskeleton.domain.base
 
 import jakarta.persistence.Column
 import jakarta.persistence.MappedSuperclass

@@ -11,6 +11,19 @@ spring:
   cloud:
     config:
       name: database,discovery
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    # 핵심: Gateway를 통해 들어오는 전체 경로를 명시해야 함
+    config-url: /core-service/v3/api-docs/swagger-config
+    disable-swagger-default-url: true
+    urls:
+      - name: Core Service API
+        url: /core-service/v3/api-docs
+
 logging:
   level:
     '[org.hibernate.orm.jdbc.bind]': trace

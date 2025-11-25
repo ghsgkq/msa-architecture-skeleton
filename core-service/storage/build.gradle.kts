@@ -3,8 +3,8 @@ version = "0.0.1-SNAPSHOT"
 description = "msa-architecture-skeleton"
 
 dependencies {
+    implementation(project(":core-service:domain"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("com.github.f4b6a3:ulid-creator:5.2.3")
     runtimeOnly("org.postgresql:postgresql")
 
     // QueryDSL

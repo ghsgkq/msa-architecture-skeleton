@@ -21,6 +21,14 @@ class CoreRoutesConfig(
                     }
                     .uri("lb://CORE-SERVICE")
             }
+            .route("core-service-swagger") { route ->
+               route.path("/core-service/swagger-ui/**", "/core-service/v3/**")
+                    .filters { filter ->
+                        filter.rewritePath("/core-service/(?<segment>.*)", $$"/${segment}")
+                    }
+                    .uri("lb://CORE-SERVICE")
+
+            }
             .route("core-service") { route ->
                 route.path("/core-service/**")
                     .filters { filter ->

@@ -1,4 +1,4 @@
-package dev.architecture.msaarchitectureskeleton.entity.base
+package dev.architecture.msaarchitectureskeleton.domain.base
 
 import com.github.f4b6a3.ulid.UlidCreator
 import jakarta.persistence.Column

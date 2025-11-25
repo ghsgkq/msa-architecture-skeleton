@@ -1,6 +1,6 @@
-package dev.architecture.msaarchitectureskeleton.entity.member
+package dev.architecture.msaarchitectureskeleton.domain.member.entity
 
-import dev.architecture.msaarchitectureskeleton.entity.base.PrimaryKey
+import dev.architecture.msaarchitectureskeleton.domain.base.PrimaryKey
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
@@ -10,18 +10,18 @@ import org.hibernate.annotations.Comment
 @Table(name = "member")
 @Entity
 class MemberEntity(
-    userId: String,
-    userPw: String,
+    memberId: String,
+    memberPw: String,
     name: String
 ): PrimaryKey() {
     @Comment("로그인 id")
     @Column(name = "member_id",nullable = false, unique = true)
-    var userId: String = userId
+    var memberId: String = memberId
         protected set
 
     @Comment("로그인 pw")
     @Column(name = "member_pw",nullable = false)
-    var userPw: String = userPw
+    var memberPw: String = memberPw
         protected set
 
     @Comment("사용자 이름")

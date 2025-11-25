@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.transaction.annotation.EnableTransactionManagement
 
 @Configuration
-@EntityScan(basePackages = ["dev.architecture.msaarchitectureskeleton.entity"])
-@EnableJpaRepositories(basePackages = ["dev.architecture.msaarchitectureskeleton.entity"])
+@EntityScan(basePackages = ["dev.architecture.msaarchitectureskeleton.domain"])
+@EnableJpaRepositories(basePackages = ["dev.architecture.msaarchitectureskeleton.storage"])
 @EnableTransactionManagement
 @EnableJpaAuditing
 class JpaConfig {

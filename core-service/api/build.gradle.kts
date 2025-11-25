@@ -14,22 +14,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.cloud:spring-cloud-starter-config")
 
+    // Persistable 인터페이스를 api 모듈이 알 수 있도록 추가
+    implementation("org.springframework.data:spring-data-commons")
+
     implementation("io.jsonwebtoken:jjwt:0.13.0")
     implementation("io.jsonwebtoken:jjwt-impl:0.13.0")
     implementation("io.jsonwebtoken:jjwt-jackson:0.13.0")
 
 }
-
-tasks.getByName("bootJar") {
-    enabled = true
-}
-
-
-tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
-    enabled = true
-}
-
-tasks.getByName("jar") {
-    enabled = false
-}
-

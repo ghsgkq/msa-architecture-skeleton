@@ -34,6 +34,7 @@ subprojects {
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("io.github.oshai:kotlin-logging-jvm:7.0.13")
+        implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14")
 
         developmentOnly("org.springframework.boot:spring-boot-devtools")
 

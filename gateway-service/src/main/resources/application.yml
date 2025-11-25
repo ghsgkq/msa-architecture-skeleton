@@ -12,6 +12,12 @@ spring:
     import:
       - configserver:${CONFIG_URL:http://localhost:8888}
 
+springdoc:
+  swagger-ui:
+    urls:
+      - name: core-service
+        url: /v3/api-docs/core-service
+
 logging:
   level:
     '[org.hibernate.orm.jdbc.bind]': trace

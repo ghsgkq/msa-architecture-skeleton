@@ -40,16 +40,18 @@ object ResponseBuilder {
             )
     }
 
-    fun fail(
+    fun <T> fail(
         message: String,
-        status: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR
-    ): ResponseEntity<CommonResponse<Unit>> {
+        status: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR,
+        data: T? = null
+    ): ResponseEntity<CommonResponse<T>> {
         return ResponseEntity
             .status(status)
             .body(
                 CommonResponse(
                     status = status.value(),
-                    message = message
+                    message = message,
+                    data = data
                 )
             )
     }

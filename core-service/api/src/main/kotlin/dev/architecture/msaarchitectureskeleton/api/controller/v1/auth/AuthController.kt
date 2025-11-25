@@ -16,4 +16,6 @@ class AuthController {
     fun test(): ResponseEntity<CommonResponse<String>> {
         return ResponseBuilder.success("테스트 api 완료","테스트", status = HttpStatus.OK)
     }
+
+
 }
